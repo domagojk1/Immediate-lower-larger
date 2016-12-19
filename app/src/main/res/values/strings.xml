@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Clover</string>
+    <string name="title">UNESITE JEDAN BROJ OD 100-10000</string>
+    <string name="smaller">Prvi manji:</string>
+    <string name="larger">Prvi veći:</string>
+    <string name="confirm">Upiši</string>
+    <string name="cancel">Poništi</string>
+    <string name="error_not_num">Potrebno je unijeti brojeve.</string>
+    <string name="error_range">Broj mora biti između 100 i 10000.</string>
+    <string name="larger_unavailable">Nema većeg broja.</string>
+    <string name="smaller_unavailable">Nema manjeg broja.</string>
+</resources>
