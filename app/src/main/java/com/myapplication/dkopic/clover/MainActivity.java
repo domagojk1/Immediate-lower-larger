@@ -46,6 +46,20 @@ public class MainActivity extends AppCompatActivity implements MainView {
         presenter = new MainPresenterImpl(this);
         unbinder = ButterKnife.bind(this);
         mSolutionLayout = (RelativeLayout) findViewById(R.id.layout_solution);
+
+        if (savedInstanceState != null) {
+            mEditTextInput.setText(savedInstanceState.getString(StateConstants.INPUT));
+            mTextViewError.setText(savedInstanceState.getString(StateConstants.ERROR));
+
+            String firstSmaller = savedInstanceState.getString(StateConstants.RESULT_SMALLER);
+            String firstLarger = savedInstanceState.getString(StateConstants.RESULT_LARGER);
+
+            if (firstSmaller != "" || firstLarger != "") {
+                showResultView();
+                mTextViewSmaller.setText(firstSmaller);
+                mTextViewLarger.setText(firstLarger);
+            }
+        }
     }
 
     @OnClick(R.id.btn_confirm)
@@ -107,34 +121,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-        unbinder.unbind();
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putString(StateConstants.INPUT, mEditTextInput.getText().toString());
-        outState.putString(StateConstants.RESULT_LARGER, mTextViewLarger.getText().toString());
-        outState.putString(StateConstants.RESULT_SMALLER, mTextViewSmaller.getText().toString());
-        outState.putString(StateConstants.ERROR, mTextViewError.getText().toString());
         super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        mEditTextInput.setText(savedInstanceState.getString(StateConstants.INPUT));
-        mTextViewError.setText(savedInstanceState.getString(StateConstants.ERROR));
-
-        String firstSmaller = savedInstanceState.getString(StateConstants.RESULT_SMALLER);
-        String firstLarger = savedInstanceState.getString(StateConstants.RESULT_LARGER);
-
-        if (firstSmaller != "" || firstLarger != "") {
-            showResultView();
-            mTextViewSmaller.setText(firstSmaller);
-            mTextViewLarger.setText(firstLarger);
-        }
+        if (mEditTextInput != null) outState.putString(StateConstants.INPUT, mEditTextInput.getText().toString());
+        if (mTextViewLarger != null) outState.putString(StateConstants.RESULT_LARGER, mTextViewLarger.getText().toString());
+        if (mTextViewSmaller != null) outState.putString(StateConstants.RESULT_SMALLER, mTextViewSmaller.getText().toString());
+        if (mTextViewError != null) outState.putString(StateConstants.ERROR, mTextViewError.getText().toString());
     }
 }
