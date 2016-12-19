@@ -1,7 +1,7 @@
 package com.myapplication.dkopic.clover.mvp.presenter.impl;
 
 import com.myapplication.dkopic.clover.mvp.interactor.MainInteractor;
-import com.myapplication.dkopic.clover.mvp.interactor.MainInteractorImpl;
+import com.myapplication.dkopic.clover.mvp.interactor.impl.MainInteractorImpl;
 import com.myapplication.dkopic.clover.mvp.presenter.MainPresenter;
 import com.myapplication.dkopic.clover.mvp.view.MainListener;
 import com.myapplication.dkopic.clover.mvp.view.MainView;
@@ -29,22 +29,24 @@ public class MainPresenterImpl implements MainPresenter, MainListener {
     @Override
     public void onSuccess(String firstSmaller, String firstLarger) {
         if (view != null) {
+            MainView mainView = view.get();
+
             if (firstSmaller != "") {
-                view.get().showSmaller(firstSmaller);
+                mainView.showSmaller(firstSmaller);
             }
             else {
-                view.get().showSmallerUnavailable();
+                mainView.showSmallerUnavailable();
             }
 
             if (firstLarger != "") {
-                view.get().showLarger(firstLarger);
+                mainView.showLarger(firstLarger);
             }
             else {
-                view.get().showLargerUnavailable();
+                mainView.showLargerUnavailable();
             }
 
-            view.get().showResultView();
-            view.get().hideError();
+            mainView.showResultView();
+            mainView.hideError();
         }
     }
 

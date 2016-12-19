@@ -1,6 +1,7 @@
-package com.myapplication.dkopic.clover.mvp.interactor;
+package com.myapplication.dkopic.clover.mvp.interactor.impl;
 
 import com.myapplication.dkopic.clover.constants.Boundaries;
+import com.myapplication.dkopic.clover.mvp.interactor.MainInteractor;
 import com.myapplication.dkopic.clover.mvp.view.MainListener;
 
 import java.util.ArrayList;
